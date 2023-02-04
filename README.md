@@ -19,3 +19,4 @@ También servirá para probar y aprender la funcionalidad de la API y la BD
 * Lo mismo, tratar de hacer el mockup
 * Probar y listar los paquetes que puedan ser interesantes
 * Estaría bien ir haciendo los tests unitarios
+* Animación inicial
