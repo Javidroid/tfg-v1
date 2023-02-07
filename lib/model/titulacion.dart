@@ -1,6 +1,6 @@
 /// Esta clase representa un grado o posgrado impartido en un Centro de una Universidad.
 ///
-///
+/// todo revisar y replantear esta clase
 class Titulacion {
   String nombre;
   TipoGrado tipoDeGrado;
@@ -29,4 +29,5 @@ class Titulacion {
 
 /// Enumeración con los tipos de grado que puede haber.
 /// Una titulación tendrá que tener sólo uno.
+/// todo revisar
 enum TipoGrado { grado, master, doctorado }

@@ -14,9 +14,10 @@ También servirá para probar y aprender la funcionalidad de la API y la BD
 
 ## To-Do List
 
-* Probar algunas configuraciones de la IU con el flex_color_sheme
 * Hacer las clases modelo
-* Lo mismo, tratar de hacer el mockup
 * Probar y listar los paquetes que puedan ser interesantes
 * Estaría bien ir haciendo los tests unitarios
 * Animación inicial
+* Establecer las fuentes
+* Hacer el modelo relacional
+* Revisar los colores de la IU

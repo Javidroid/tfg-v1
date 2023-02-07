@@ -16,6 +16,7 @@ class Usuario {
 
 /*
    * Métodos futuros a implementar:
+   *    Eliminar usuario
    *    Cambiar el nombre de usuario comprobando que el nuevo no existe
    *    Devolver el perfil para editarlo o editar el perfil
    *    Verificar el usuario cuando se haya recibido el código

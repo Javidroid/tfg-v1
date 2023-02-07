@@ -51,26 +51,36 @@ class Centro {
   /// Sirve para inicializar una centro directamente con todos los campos.
   Centro.predefinido(this.nombre, this.desc, this.direccion, this.listaPuntosInteres, this.listaTitulaciones);
 
+  /// Método para añadir un [PuntoInteres] a la [listaPuntosInteres].
   void anadirPuntoInteres(PuntoInteres pi) {
     // TODO: implement anadirPuntoInteres
   }
 
+  /// Método para borrar un [PuntoInteres] de la [listaPuntosInteres] mediante
+  /// una referencia directa al objeto que se quiere borrar.
   void borrarPuntoInteresByObject(PuntoInteres pi) {
     // TODO: implement borrarPuntoInteresByObject
   }
 
+  /// Método para borrar un [PuntoInteres] de la [listaPuntosInteres] mediante
+  /// el atributo [PuntoInteres.nombre].
   void borrarPuntoInteresByName(String nombre) {
     // TODO: implement borrarPuntoInteresByName
   }
 
+  /// Método para añadir una [Titulacion] a la [listaTitulaciones].
   void anadirTitulacion(Titulacion t) {
     // TODO: implement anadirTitulacion
   }
 
+  /// Método para borrar una [Titulacion] de la [listaTitulaciones] mediante
+  /// una referencia directa al objeto que se quiere borrar.
   void borrarTitulacionByObject(Titulacion t) {
     // TODO: implement borrarTitulacionByObject
   }
 
+  /// Método para borrar una [Titulacion] de la [listaTitulaciones] mediante
+  /// el atributo [Titulacion.nombre].
   void borrarTitulacionByName(String nombre) {
     // TODO: implement borrarTitulacionByName
   }

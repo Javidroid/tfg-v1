@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:tfg_v1/view/actividades_list.dart';
+import 'package:tfg_v1/view/theme/theme.dart';
 
 class PantallaPrincipal extends StatefulWidget {
   const PantallaPrincipal({super.key});
@@ -13,99 +15,127 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: const Text("SilenApp"), // todo poner nombre de la pestaña
-          actions: const [
-            Icon(Icons.more_vert),
+    return Consumer<ThemeNotifier>(builder: (context, ThemeNotifier themeNotifier, child) {
+      return Scaffold(
+          appBar: AppBar(
+            title: const Text("SilenApp"), // todo poner nombre de la pestaña
+            actions: const [
+              Icon(Icons.more_vert),
 
-            /// todo poner foto de perfil
-          ],
-        ),
-        drawer: Drawer(
-          // Add a ListView to the drawer. This ensures the user can scroll
-          // through the options in the drawer if there isn't enough vertical
-          // space to fit everything.
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: [
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                ),
-                child: const Text('[Username]?'),
-                // todo meter los elementos necesarios en la cabecera del Drawer
-              ),
-              ListTile(
-                title: const Text('Item 1'),
-                onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                title: const Text('Item 2'),
-                onTap: () {
-                  // Update the state of the app
-                  // ...
-                  // Then close the drawer
-                  Navigator.pop(context);
-                },
-              ),
+              /// todo poner foto de perfil (o en Drawer)???
             ],
           ),
-        ),
-        body: SafeArea(
-          //top: false,
-          child: <Widget>[
-            const ActividadesList(),
-            Container(
-              alignment: Alignment.center,
-              child: const Text('Buscar'),
+          drawer: Drawer(
+            // ListView nos permitirá tener un Drawer scrolleable
+            child: ListView(
+              // Important: Remove any padding from the ListView.
+              padding: EdgeInsets.zero,
+              children: [
+                UserAccountsDrawerHeader(
+                  currentAccountPicture: const CircleAvatar(
+                    foregroundImage: AssetImage("assets/SilenTheKid.jpg"),
+                  ), // todo poner onclick para llevar al perfil / cargar la foto de la BD / quitar const
+                  //currentAccountPictureSize: Size(width, height),
+                  accountName: const Text("[Username]"), // todo quitar const cuando se recoja info de API
+                  accountEmail: const Text("mail@alumnos.unex.es"),
+                  otherAccountsPictures: [
+                    IconButton(
+                        icon: Icon(themeNotifier.modo
+                            ? Icons.wb_sunny          // modo == true -> Modo Claro
+                            : Icons.nightlight_round  // modo == false -> Modo Oscuro
+                        ),
+                        onPressed: () {
+                          themeNotifier.modo = !themeNotifier.modo; // Invertimos la selección
+                        })
+                  ],
+                ),
+                ListTile(
+                  title: const Text('Item 1'),
+                  onTap: () {
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: const Text('Item 2'),
+                  onTap: () {
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    Navigator.pop(context);
+                  },
+                ),
+                const Divider(
+                  // todo revisar barrita separadora cambiar según tema
+                  color: Colors.black,
+                  thickness: 1,
+                  height: 20,
+                  indent: 20,
+                  endIndent: 20,
+                ),
+                ListTile(
+                  title: const Text('Item 3'),
+                  onTap: () {
+                    // Update the state of the app
+                    // ...
+                    // Then close the drawer
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text('Notificaciones'),
-            ),
-            Container(
-              alignment: Alignment.center,
-              child: const Text('Mensajes Directos'),
-            ),
-          ][currentPageIndex],
-        ),
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              currentPageIndex = index;
-            });
-          },
-          selectedIndex: currentPageIndex,
-          destinations: const <Widget>[
-            // los iconos de la barra
-            NavigationDestination(
-              selectedIcon: Icon(Icons.home),
-              icon: Icon(Icons.home_outlined),
-              label: 'Actividades',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(Icons.search),
-              icon: Icon(Icons.search_outlined),
-              label: 'Buscar',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(Icons.notifications),
-              icon: Icon(Icons.notifications_none_outlined),
-              label: 'Notificaciones',
-            ),
-            NavigationDestination(
-              selectedIcon: Icon(Icons.mail),
-              icon: Icon(Icons.mail_outline),
-              label: 'Mensajes',
-            ),
-          ],
-        ));
+          ),
+          body: SafeArea(
+            //top: false,
+            child: <Widget>[
+              const ActividadesList(),
+              Container(
+                alignment: Alignment.center,
+                child: const Text('Buscar'),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: const Text('Notificaciones'),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: const Text('Mensajes Directos'),
+              ),
+            ][currentPageIndex],
+          ),
+          bottomNavigationBar: NavigationBar(
+            onDestinationSelected: (int index) {
+              setState(() {
+                currentPageIndex = index;
+              });
+            },
+            selectedIndex: currentPageIndex,
+            destinations: const <Widget>[
+              // los iconos de la barra
+              NavigationDestination(
+                selectedIcon: Icon(Icons.home),
+                icon: Icon(Icons.home_outlined),
+                label: 'Actividades',
+              ),
+              NavigationDestination(
+                selectedIcon: Icon(Icons.search),
+                icon: Icon(Icons.search_outlined),
+                label: 'Buscar',
+              ),
+              NavigationDestination(
+                selectedIcon: Icon(Icons.notifications),
+                icon: Icon(Icons.notifications_none_outlined),
+                label: 'Notificaciones',
+              ),
+              NavigationDestination(
+                selectedIcon: Icon(Icons.mail),
+                icon: Icon(Icons.mail_outline),
+                label: 'Mensajes',
+              ),
+            ],
+          ));
+    });
   }
 }

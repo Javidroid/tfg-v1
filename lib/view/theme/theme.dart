@@ -1,0 +1,182 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
+import 'package:flutter/material.dart';
+import '../../shared_preferences/theme_preferences.dart';
+
+/// Clase encargada de crear los Temas Claro y Oscuro mediante la extensión
+/// [FlexColorScheme](https://pub.dev/packages/flex_color_scheme).
+///
+/// Los métodos de esta clase deberían ser llamados en los campos Theme: y
+/// DarkTheme: del Widget MaterialApp que se encarga de generar el Root de
+/// la aplicación en el método build() de [MyApp].
+class ThemeGenerator {
+
+  /// Constante que guarda el esquema de color para el modo claro.
+  ///
+  /// Al ser estático, se puede utilizar para usar la paleta de colores
+  /// en momentos puntuales y concretos al desarrollar la IU sin necesidad
+  /// de recurrir a Theme.of(context), que suele dar errores.
+  static const FlexSchemeColor flexSchemeLight = FlexSchemeColor(
+    primary: Color(0xff00b28c),
+    primaryContainer: Color(0xffd0e4ff),
+    secondary: Color(0xffeaaf0f),
+    secondaryContainer: Color(0xffffdbcf),
+    tertiary: Color(0xff26d8b2),
+    tertiaryContainer: Color(0xff95f0ff),
+    appBarColor: Color(0xffffdbcf),
+    error: Color(0xffb00020),
+  );
+
+  /// Constante que guarda el esquema de color para el modo oscuro.
+  ///
+  /// Al ser estático, se puede utilizar para usar la paleta de colores
+  /// en momentos puntuales y concretos al desarrollar la IU sin necesidad
+  /// de recurrir a Theme.of(context), que suele dar errores.
+  static const FlexSchemeColor flexSchemeDark = FlexSchemeColor(
+    primary: Color(0xff00b28c),
+    primaryContainer: Color(0xffd0e4ff),
+    secondary: Color(0xffeaaf0f),
+    secondaryContainer: Color(0xffffdbcf),
+    tertiary: Color(0xff26d8b2),
+    tertiaryContainer: Color(0xff95f0ff),
+    appBarColor: Color(0xffffdbcf),
+    error: Color(0xffb00020),
+  );
+
+  /// Método que genera la configuración necesaria para establecer el Tema Claro
+  /// en los Widgets de la App de forma coherente y conjunta.
+  static ThemeData generarTemaClaro() {
+    return FlexThemeData.light(
+      colors: flexSchemeLight,
+      usedColors: 4,
+      surfaceMode: FlexSurfaceMode.highScaffoldLevelSurface,
+      blendLevel: 20,
+      appBarOpacity: 0.98,
+      appBarElevation: 4.0,
+      subThemesData: const FlexSubThemesData(
+        elevatedButtonSchemeColor: SchemeColor.secondary,
+        elevatedButtonSecondarySchemeColor: SchemeColor.onSecondary,
+        toggleButtonsSchemeColor: SchemeColor.secondary,
+        switchSchemeColor: SchemeColor.primary,
+        radioSchemeColor: SchemeColor.primary,
+        sliderBaseSchemeColor: SchemeColor.primary,
+        inputDecoratorRadius: 25.0,
+        inputDecoratorUnfocusedHasBorder: false,
+        chipSchemeColor: SchemeColor.primary,
+        chipRadius: 30.0,
+        cardRadius: 25.0,
+        popupMenuRadius: 10.0,
+        popupMenuElevation: 15.0,
+        tabBarIndicatorSchemeColor: SchemeColor.secondary,
+        navigationBarIndicatorSchemeColor: SchemeColor.primary,
+      ),
+      keyColors: const FlexKeyColors(
+        useSecondary: true,
+        keepPrimary: true,
+        keepSecondary: true,
+      ),
+      tones: FlexTones.highContrast(Brightness.light),
+      visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      fontFamily: 'Futura', // todo revisar fuente
+    );
+  }
+
+  /// Método que genera la configuración necesaria para establecer el Tema Oscuro
+  /// en los Widgets de la App de forma coherente y conjunta.
+  static ThemeData generarTemaOscuro() {
+    return FlexThemeData.dark(
+      colors: flexSchemeDark,
+      usedColors: 4,
+      surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
+      blendLevel: 15,
+      subThemesData: const FlexSubThemesData(
+        textButtonSchemeColor: SchemeColor.secondary,
+        // mod
+        elevatedButtonSchemeColor: SchemeColor.secondary,
+        elevatedButtonSecondarySchemeColor: SchemeColor.onSecondary,
+        outlinedButtonSchemeColor: SchemeColor.secondary,
+        // mod
+        toggleButtonsSchemeColor: SchemeColor.secondary,
+        // mod
+        switchSchemeColor: SchemeColor.secondary,
+        // mod
+        checkboxSchemeColor: SchemeColor.secondary,
+        // mod
+        radioSchemeColor: SchemeColor.secondary,
+        // mod
+        sliderBaseSchemeColor: SchemeColor.secondary,
+        // mod
+        inputDecoratorRadius: 25.0,
+        inputDecoratorUnfocusedHasBorder: false,
+        chipSchemeColor: SchemeColor.secondary,
+        // mod
+        chipRadius: 30.0,
+        cardRadius: 25.0,
+        popupMenuRadius: 10.0,
+        popupMenuElevation: 15.0,
+        tabBarItemSchemeColor: SchemeColor.secondary,
+        tabBarIndicatorSchemeColor: SchemeColor.primary,
+        bottomNavigationBarSelectedLabelSchemeColor: SchemeColor.secondary,
+        // mod
+        bottomNavigationBarSelectedIconSchemeColor: SchemeColor.secondary,
+        // mod
+        navigationBarSelectedLabelSchemeColor: SchemeColor.secondary,
+        // mod
+        navigationBarSelectedIconSchemeColor: SchemeColor.secondary,
+        // mod
+        navigationBarIndicatorSchemeColor: SchemeColor.secondary, // mod
+      ),
+      keyColors: const FlexKeyColors(
+        useSecondary: true,
+      ),
+      tones: FlexTones.highContrast(Brightness.dark),
+      visualDensity: FlexColorScheme.comfortablePlatformDensity,
+      fontFamily: 'Futura', // todo revisar fuente
+    );
+  }
+}
+
+/// Clase que se utiliza para notificar si el usuario ha cambiado entre el modo
+/// claro o el oscuro.
+class ThemeNotifier extends ChangeNotifier {
+  /// Indica el modo actualmente activo.
+  ///
+  /// True: Claro / False: Oscuro
+  late bool _modo;
+  bool get modo => _modo;
+
+  /// Instancia de [SharedPrefTema] para acceder al Shared Preferences.
+  ///
+  /// Esto sirve para poder guardar localmente el tema que se haya elegido y que
+  /// se quede para futuras ejecuciones de la App.
+  late SharedPrefTema _pref;
+
+
+  /// El constructor genera un objeto con el [_modo] inicializado a Claro. Esto es
+  /// por si es la primera vez que se ejecuta la app y no hay preferencias previas.
+  ///
+  /// Crea un objeto para acceder a las SharedPreferences del dispositivo que se rellena
+  /// en cuanto se llama a [getPreferences].
+  ///
+  /// El resultado es una instancia de la clase [ThemeNotifier] con acceso a las
+  /// SharedPreferences almacenadas y el [_modo] del Tema establecido según lo
+  /// almacenado.
+  ThemeNotifier() {
+    _modo = true;
+    _pref = SharedPrefTema();
+    getPreferences();
+  }
+
+  /// Alterna el [_modo] entre Claro y Oscuro. Notifica a los observadores.
+  set modo(bool value) {
+    _modo = value;
+    _pref.setTheme(value);
+    notifyListeners();
+  }
+
+  /// Accede asíncronamente (por la indefinida tardanza de acceso a disco) a las SharedPreferences
+  /// y almacena en [_modo] el valor que haya almacenado. Después, notifica a todos los observadores.
+  getPreferences() async {
+    _modo = await _pref.getTheme();
+    notifyListeners();
+  }
+}
