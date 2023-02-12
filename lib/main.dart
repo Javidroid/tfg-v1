@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:tfg_v1/view/ajustes.dart';
+import 'package:tfg_v1/view/perfil.dart';
 import 'package:tfg_v1/view/theme/theme.dart';
 import 'package:tfg_v1/view/actividades_detail.dart';
 import 'package:tfg_v1/view/actividades_list.dart';
@@ -35,14 +37,22 @@ class MyApp extends StatelessWidget {
           // home: const PantallaPrincipal(),
           initialRoute: '/auth/login',
 
-          // todo estudiar rutas
+          // todo estudiar y reestructurar rutas
           routes: {
-            '/': (context) => const PantallaPrincipal(),
-            '/auth/login': (context) => const PantallaLogin(), // fixme Login deja volver hacia atrás
+            '/home': (context) => const PantallaPrincipal(),
+            '/auth/login': (context) => const PantallaLogin(),
             '/auth/registro': (context) => const PantallaRegistro(),
-            '/actividades': (context) => const ActividadesList(),
-            '/actividades/detail': (context) => const ActividadesDetail(),
-            '/perfil': (context) => const PantallaPrincipal(), // todo navegar perfil
+
+            '/home/actividades': (context) => const ActividadesList(),
+            '/home/actividades/detail': (context) => const ActividadesDetail(),
+
+            '/home/universidad_list': (context) => const PantallaPrincipal(),
+            '/home/universidad': (context) => const PantallaPrincipal(),
+            '/home/centro': (context) => const PantallaPrincipal(), // todo cambiar
+            '/home/puntoInteres': (context) => const PantallaPrincipal(),
+
+            '/home/perfil': (context) => const PantallaPerfil(), // todo navegar perfil
+            '/home/ajustes': (context) => const PantallaAjustes(), // todo navegar perfil
           },
         );
       }),

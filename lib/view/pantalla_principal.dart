@@ -12,6 +12,104 @@ class PantallaPrincipal extends StatefulWidget {
 
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
   int currentPageIndex = 0;
+  int currentDrawerIndex = 0; // todo usar para cargar la pantalla del drawer
+
+  Drawer generarDrawer(ThemeNotifier themeNotifier) {
+    return Drawer(
+      // ListView nos permitirá tener un Drawer scrolleable
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.zero,
+        children: [
+          UserAccountsDrawerHeader(
+            currentAccountPicture: const CircleAvatar(
+              foregroundImage: AssetImage("assets/SilenTheKid.jpg"),
+            ), // todo poner onclick para llevar al perfil / cargar la foto de la BD / quitar const
+            //currentAccountPictureSize: Size(width, height),
+            accountName: const Text("[Username]"), // todo quitar const cuando se recoja info de API
+            accountEmail: const Text("mail@alumnos.unex.es"),
+            otherAccountsPictures: [
+              IconButton(
+                  icon: Icon(themeNotifier.modo
+                      ? Icons.wb_sunny          // modo == true -> Modo Claro
+                      : Icons.nightlight_round  // modo == false -> Modo Oscuro
+                  ),
+                  onPressed: () {
+                    themeNotifier.modo = !themeNotifier.modo; // Invertimos la selección
+                  })
+            ],
+          ),
+          ListTile(
+            title: const Text('Perfil'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/home/perfil");
+            },
+          ),
+          ListTile(
+            title: const Text('Actividades Pendientes'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('Ajustes'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/home/ajustes");
+            },
+          ),
+          ListTile(
+            title: const Text('Solicitudes de amistad'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          const Divider(
+            // todo revisar barrita separadora cambiar según tema
+            color: Colors.black,
+            thickness: 1,
+            height: 20,
+            indent: 20,
+            endIndent: 20,
+          ),
+          ListTile(
+            title: const Text('About'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('FAQ'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('Invitar amigos'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,72 +123,11 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
               /// todo poner foto de perfil (o en Drawer)???
             ],
           ),
-          drawer: Drawer(
-            // ListView nos permitirá tener un Drawer scrolleable
-            child: ListView(
-              // Important: Remove any padding from the ListView.
-              padding: EdgeInsets.zero,
-              children: [
-                UserAccountsDrawerHeader(
-                  currentAccountPicture: const CircleAvatar(
-                    foregroundImage: AssetImage("assets/SilenTheKid.jpg"),
-                  ), // todo poner onclick para llevar al perfil / cargar la foto de la BD / quitar const
-                  //currentAccountPictureSize: Size(width, height),
-                  accountName: const Text("[Username]"), // todo quitar const cuando se recoja info de API
-                  accountEmail: const Text("mail@alumnos.unex.es"),
-                  otherAccountsPictures: [
-                    IconButton(
-                        icon: Icon(themeNotifier.modo
-                            ? Icons.wb_sunny          // modo == true -> Modo Claro
-                            : Icons.nightlight_round  // modo == false -> Modo Oscuro
-                        ),
-                        onPressed: () {
-                          themeNotifier.modo = !themeNotifier.modo; // Invertimos la selección
-                        })
-                  ],
-                ),
-                ListTile(
-                  title: const Text('Item 1'),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  title: const Text('Item 2'),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-                const Divider(
-                  // todo revisar barrita separadora cambiar según tema
-                  color: Colors.black,
-                  thickness: 1,
-                  height: 20,
-                  indent: 20,
-                  endIndent: 20,
-                ),
-                ListTile(
-                  title: const Text('Item 3'),
-                  onTap: () {
-                    // Update the state of the app
-                    // ...
-                    // Then close the drawer
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-          ),
+          drawer: generarDrawer(themeNotifier),
           body: SafeArea(
             //top: false,
             child: <Widget>[
-              const ActividadesList(),
+              const ActividadesList(), // generamos la pantalla ActividadesList aquí
               Container(
                 alignment: Alignment.center,
                 child: const Text('Buscar'),

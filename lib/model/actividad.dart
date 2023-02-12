@@ -8,4 +8,5 @@ import 'Usuario.dart';
 class Actividad {
   // Usuario userCreador;
   // String desc;
+  // Categoría -> debatir si hacer categorías predefinidas, o personalizables
 }

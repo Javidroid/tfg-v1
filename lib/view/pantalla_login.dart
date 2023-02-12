@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v1/view/theme/theme.dart';
 import 'pantalla_registro.dart';
 
 class PantallaLogin extends StatefulWidget {
@@ -13,7 +14,7 @@ class PantallaLoginState extends State<PantallaLogin> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Login Page"),
+        title: const Text("Iniciar sesión"),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -46,7 +47,7 @@ class PantallaLoginState extends State<PantallaLogin> {
               },
               child: const Text(
                 'He olvidado mi contraseña',
-                style: TextStyle(color: Colors.blue, fontSize: 15),
+                style: TextStyle(fontSize: 15),
               ),
             ),
             Container(
@@ -55,7 +56,7 @@ class PantallaLoginState extends State<PantallaLogin> {
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pushNamed(context, '/home');
                 },
                 child: const Text(
                   'Iniciar sesión',
@@ -64,9 +65,17 @@ class PantallaLoginState extends State<PantallaLogin> {
               ),
             ),
             const SizedBox(
-              height: 130,
+              height: 130, // todo ajustar según resolución
             ),
-            const Text('¿Nuevx por aquí? Crea aquí tu cuenta ;)'),
+            TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, "/auth/registro");
+              },
+              child: const Text(
+                '¿Eres nuevx? Regístrate aquí',
+                style: TextStyle(fontSize: 15),
+              ),
+            ),
           ],
         ),
       ),
@@ -114,7 +123,7 @@ class PantallaLoginState extends State<PantallaLogin> {
                 child: const Text('Registrarse'),
                 onPressed: () {
                   Navigator.of(context).pop();
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => const PantallaRegistro()));
+                  Navigator.pushNamed(context, "/auth/registro");
                 },
               )),
             TextButton(
