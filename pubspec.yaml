@@ -36,6 +36,7 @@ dependencies:
   flex_color_scheme: ^6.1.2
   provider: ^6.0.5
   shared_preferences: ^2.0.17
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,10 @@ flutter:
   fonts:
     - family: Futura
       fonts:
-        - asset: fonts/Futura Extra Bold Condensed.otf
-        - asset: fonts/Futura_Condensed_Bold.ttf
-          style: normal
+        - asset: fonts/Futura-Light.ttf
+        - asset: fonts/Futura-Medium.ttf
+          weight: 300
+        - asset: fonts/Futura-Bold.ttf
+          weight: 500
+        - asset: fonts/Futura-ExtraBold.otf
+          weight: 900

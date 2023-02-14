@@ -10,11 +10,26 @@ class ActividadesDetail extends StatefulWidget {
 class _ActividadesDetailState extends State<ActividadesDetail> {
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-      //top: false,
-        child: Container(
-          alignment: Alignment.center,
-          child: const Text('ACTIVIDADES DETAIL'),
-        ));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("[Actividad Detail]"), // todo poner nombre de la pestaña
+        actions: [
+          ElevatedButton(
+            onPressed: () {
+              // todo editar perfil
+            },
+            child: const Text("Unirse"),
+          )
+        ],
+      ),
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.02),
+          children: const [
+            Text("Actividad Detail")
+          ],
+        ),
+      ),
+    );
   }
 }

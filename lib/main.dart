@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v1/view/ajustes.dart';
-import 'package:tfg_v1/view/perfil.dart';
+import 'package:tfg_v1/view/perfil_view.dart';
 import 'package:tfg_v1/view/theme/theme.dart';
 import 'package:tfg_v1/view/actividades_detail.dart';
 import 'package:tfg_v1/view/actividades_list.dart';

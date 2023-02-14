@@ -10,28 +10,12 @@ import '../../shared_preferences/theme_preferences.dart';
 /// la aplicación en el método build() de [MyApp].
 class ThemeGenerator {
 
-  /// Constante que guarda el esquema de color para el modo claro.
+  /// Constante que guarda el esquema de color
   ///
   /// Al ser estático, se puede utilizar para usar la paleta de colores
   /// en momentos puntuales y concretos al desarrollar la IU sin necesidad
   /// de recurrir a Theme.of(context), que suele dar errores.
-  static const FlexSchemeColor flexSchemeLight = FlexSchemeColor(
-    primary: Color(0xff00b28c),
-    primaryContainer: Color(0xffd0e4ff),
-    secondary: Color(0xffeaaf0f),
-    secondaryContainer: Color(0xffffdbcf),
-    tertiary: Color(0xff26d8b2),
-    tertiaryContainer: Color(0xff95f0ff),
-    appBarColor: Color(0xffffdbcf),
-    error: Color(0xffb00020),
-  );
-
-  /// Constante que guarda el esquema de color para el modo oscuro.
-  ///
-  /// Al ser estático, se puede utilizar para usar la paleta de colores
-  /// en momentos puntuales y concretos al desarrollar la IU sin necesidad
-  /// de recurrir a Theme.of(context), que suele dar errores.
-  static const FlexSchemeColor flexSchemeDark = FlexSchemeColor(
+  static const FlexSchemeColor esquemaColor = FlexSchemeColor(
     primary: Color(0xff00b28c),
     primaryContainer: Color(0xffd0e4ff),
     secondary: Color(0xffeaaf0f),
@@ -46,7 +30,7 @@ class ThemeGenerator {
   /// en los Widgets de la App de forma coherente y conjunta.
   static ThemeData generarTemaClaro() {
     return FlexThemeData.light(
-      colors: flexSchemeLight,
+      colors: esquemaColor,
       usedColors: 4,
       surfaceMode: FlexSurfaceMode.highScaffoldLevelSurface,
       blendLevel: 20,
@@ -63,7 +47,6 @@ class ThemeGenerator {
         inputDecoratorUnfocusedHasBorder: false,
         chipSchemeColor: SchemeColor.primary,
         chipRadius: 30.0,
-        cardRadius: 25.0,
         popupMenuRadius: 10.0,
         popupMenuElevation: 15.0,
         tabBarIndicatorSchemeColor: SchemeColor.secondary,
@@ -84,7 +67,7 @@ class ThemeGenerator {
   /// en los Widgets de la App de forma coherente y conjunta.
   static ThemeData generarTemaOscuro() {
     return FlexThemeData.dark(
-      colors: flexSchemeDark,
+      colors: esquemaColor,
       usedColors: 4,
       surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
       blendLevel: 15,
@@ -110,7 +93,6 @@ class ThemeGenerator {
         chipSchemeColor: SchemeColor.secondary,
         // mod
         chipRadius: 30.0,
-        cardRadius: 25.0,
         popupMenuRadius: 10.0,
         popupMenuElevation: 15.0,
         tabBarItemSchemeColor: SchemeColor.secondary,
