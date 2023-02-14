@@ -22,9 +22,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            currentAccountPicture: const CircleAvatar(
-              foregroundImage: AssetImage("assets/SilenTheKid.jpg"),
-            ), // todo poner onclick para llevar al perfil / cargar la foto de la BD / quitar const
+            currentAccountPicture: GestureDetector(
+              onTap: () => Navigator.pushNamed(context, "/home/perfil"),
+              child: const CircleAvatar(
+                foregroundImage: AssetImage("assets/SilenTheKid.jpg"),
+              ),
+            ), // todo cargar la foto de la BD / quitar const
             //currentAccountPictureSize: Size(width, height),
             accountName: const Text("[Username]"), // todo quitar const cuando se recoja info de API
             accountEmail: const Text("mail@alumnos.unex.es"),
@@ -80,15 +83,6 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             endIndent: 20,
           ),
           ListTile(
-            title: const Text('About'),
-            onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
             title: const Text('FAQ'),
             onTap: () {
               // Update the state of the app
@@ -105,6 +99,21 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
               // Then close the drawer
               Navigator.pop(context);
             },
+          ),
+          const AboutListTile( // <-- SEE HERE
+            icon: Icon(
+              Icons.info,
+            ),
+            applicationIcon: Icon(
+              Icons.info_outline,
+            ),
+            applicationName: 'SilenApp',
+            applicationVersion: 'v1.0.0',
+            applicationLegalese: 'Javier Florido Cartolano (UEx, 2023)',
+            aboutBoxChildren: [
+              // contenido
+            ],
+            child: Text('About'),
           ),
         ],
       ),
@@ -128,6 +137,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             //top: false,
             child: <Widget>[
               const ActividadesList(), // generamos la pantalla ActividadesList aquí
+
               Container(
                 alignment: Alignment.center,
                 child: const Text('Buscar'),

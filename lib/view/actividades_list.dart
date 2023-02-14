@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v1/customWidgets/actividad_preview.dart';
+import 'package:tfg_v1/model/actividad.dart';
+import '../model/Usuario.dart';
 
 class ActividadesList extends StatefulWidget {
   const ActividadesList({super.key});
@@ -10,35 +13,28 @@ class ActividadesList extends StatefulWidget {
 class _ActividadesListState extends State<ActividadesList> {
   @override
   Widget build(BuildContext context) {
-    return  SafeArea(
-          //top: false,
-          child: Container(
-        alignment: Alignment.center,
-        child: const Text('Actividades'),
-      ));
-  }
-}
 
-/// Esta clase se encarga de representar visualmente un elemento de previsualización de una [Actividad].
-///
-/// Esta previsualización recoge la información mínima necesaria para que un usuario vea de qué trata
-/// la [Actividad] junto al resto de Actividades publicadas en la lista.
-class ActividadPreview extends StatefulWidget {
-  const ActividadPreview({Key? key}) : super(key: key);
-
-  @override
-  State<ActividadPreview> createState() => _ActividadPreviewState();
-}
-
-class _ActividadPreviewState extends State<ActividadPreview> {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: hacer la previsualiación de la actividad
-    /* IDEAS:
-     * todo mirar en los componentes de elementos de una lista (ListTile)
-     *
-     */
-
-    return const Placeholder();
+    Usuario userJavi = Usuario(1, "jaflorido@alumnos.unex.es", "SilenTheKid"); // todo borrar
+    Actividad actTest = Actividad(userJavi, "Ir al parke a exarse unas pipas yasabes bro", "El parke", DateTime.now());
+    return SafeArea(
+      //top: false,
+      child: ListView(
+        padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+        children: [ // todo get de la API
+          ActividadPreview(
+              user: userJavi,
+              actividad: actTest,
+          ),
+          ActividadPreview(
+            user: userJavi,
+            actividad: actTest,
+          ),
+          ActividadPreview(
+            user: userJavi,
+            actividad: actTest,
+          ),
+        ],
+      )
+    );
   }
 }
