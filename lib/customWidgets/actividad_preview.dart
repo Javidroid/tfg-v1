@@ -27,6 +27,7 @@ class _ActividadPreviewState extends State<ActividadPreview> {
         Navigator.pushNamed(context, '/home/actividades/detail');
       },
       child: Card(
+        /// METER CATEGORÍA POR AHÍ O ALGO
         elevation: 5,
         child: Container(
           padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
