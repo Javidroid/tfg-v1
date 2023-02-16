@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v1/view/p_principal_example.dart';
 import 'package:tfg_v1/view/theme/theme.dart';
 import 'pantalla_registro.dart';
 
@@ -56,7 +57,10 @@ class PantallaLoginState extends State<PantallaLogin> {
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PantallaPrincipal())
+                  );
                 },
                 child: const Text(
                   'Iniciar sesión',
@@ -69,7 +73,10 @@ class PantallaLoginState extends State<PantallaLogin> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, "/auth/registro");
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PantallaRegistro())
+                );
               },
               child: const Text(
                 '¿Eres nuevx? Regístrate aquí',
@@ -79,63 +86,6 @@ class PantallaLoginState extends State<PantallaLogin> {
           ],
         ),
       ),
-    );
-  }
-
-  Future<void> _mostrarAlerta(int codigo) async {
-    String texto = '';
-
-    switch (codigo) {
-      case 0:
-        texto = "El usuario no existe.\nPruebe registrarse";
-        break;
-      case 1: // este caso no debería ser llamado
-        texto = "Inicio de sesión correcto :)";
-        break;
-      case 2:
-        texto = "Las credenciales no son válidas";
-        break;
-      case 3:
-        texto = "Por favor, rellene los campos";
-        break;
-      case 4:
-        texto = "Error desconocido";
-        break;
-    }
-
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Error al iniciar sesión'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(texto),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            if (codigo == 0)
-              ( // si el nombre de usuario no existe
-                  TextButton(
-                child: const Text('Registrarse'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  Navigator.pushNamed(context, "/auth/registro");
-                },
-              )),
-            TextButton(
-              child: const Text('Vale'),
-              onPressed: () {
-                setState(() {});
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }

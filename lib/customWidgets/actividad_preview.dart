@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v1/view/actividades_detail.dart';
 import 'package:tfg_v1/view/theme/theme.dart';
 import 'package:intl/intl.dart';
 
@@ -24,7 +25,10 @@ class _ActividadPreviewState extends State<ActividadPreview> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/home/actividades/detail');
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ActividadesDetail(actividad: widget.actividad))
+        );
       },
       child: Card(
         /// METER CATEGORÍA POR AHÍ O ALGO
@@ -51,7 +55,7 @@ class _ActividadPreviewState extends State<ActividadPreview> {
                 ],
               ),
               Container(
-                padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+                padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.01, horizontal: 0),
                 child: Text( // todo alinear justificado
                   widget.actividad.desc,
                   textAlign: TextAlign.justify,
@@ -61,10 +65,11 @@ class _ActividadPreviewState extends State<ActividadPreview> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const Text(
                     "x gente inscrita",
-                    style: TextStyle(fontSize: 10),
+                    style: TextStyle(fontSize: 12),
                   ),
                   ElevatedButton(
                     onPressed: (){},

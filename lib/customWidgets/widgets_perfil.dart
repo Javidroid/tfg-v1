@@ -1,4 +1,6 @@
+import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// La Cabecera del Perfil se divide en varias partes (por filas):
 ///
@@ -30,12 +32,13 @@ class CabeceraPerfil extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        Container(
+          padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * 0.008),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               CircleAvatar(
-                radius: MediaQuery.of(context).size.height * 0.06,
+                radius: MediaQuery.of(context).size.height * 0.055,
                 foregroundImage: AssetImage(fotoPerfil),
               ),
               botonCabeceraNumeros(context, nAmigos, 'Amigos'),
@@ -43,31 +46,41 @@ class CabeceraPerfil extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
-          height: MediaQuery.of(context).size.height * 0.06,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "$nombre, $edad\n"
-                "$titulacion ($centro)",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          child: Text(
-            descripcion,
-            textAlign: TextAlign.justify,
-            maxLines: 5,
-            style: const TextStyle(
-              fontWeight: FontWeight.w100,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "$nombre, $edad",
+              style: const TextStyle(fontSize: 18),
             ),
-          ),
+            Text(
+              "$titulacion ($centro)",
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+            ),
+            ExpandableText(
+              descripcion,
+              textAlign: TextAlign.justify,
+              expandText: 'más',
+              collapseText: '(mostrar menos)',
+              maxLines: 3,
+              animation: true,
+              expandOnTextTap: true,
+              //collapseOnTextTap: true,
+              linkEllipsis: false,
+              style: GoogleFonts.getFont('Lato'),
+            ),
+          ],
         ),
+        // Text(
+        //     descripcion,
+        //     textAlign: TextAlign.justify,
+        //     maxLines: 3,
+        //     style: const TextStyle(
+        //       fontWeight: FontWeight.w100,
+        //     ),
+        //   ),
+        // ),
+
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.05,
           child: Row(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v1/view/theme/theme.dart';
-import 'pantalla_registro.dart';
+import 'package:tfg_v1/view/pantalla_login.dart';
+import 'pantalla_principal.dart';
 
 class PantallaRegistro extends StatefulWidget {
   const PantallaRegistro({Key? key}) : super(key: key);
@@ -50,7 +50,10 @@ class PantallaRegistroState extends State<PantallaRegistro> {
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PantallaPrincipal())
+                  );
                 },
                 child: const Text(
                   'Registrarse',
@@ -117,7 +120,10 @@ class PantallaRegistroState extends State<PantallaRegistro> {
                     child: const Text('Iniciar sesión'),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      Navigator.pushNamed(context, "/auth/login");
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const PantallaLogin())
+                      );
                     },
                   )),
             TextButton(

@@ -15,12 +15,13 @@ class _ActividadesListState extends State<ActividadesList> {
   Widget build(BuildContext context) {
 
     Usuario userJavi = Usuario(1, "jaflorido@alumnos.unex.es", "SilenTheKid"); // todo borrar
-    Actividad actTest = Actividad(userJavi, "Ir al parke a exarse unas pipas yasabes bro", "El parke", DateTime.now());
+    Actividad actTest = Actividad(userJavi, "Ir al parke a exarse unas pipas yasabes bro", "El parke", DateTime.now()); // todo borrar
+
     return SafeArea(
       //top: false,
       child: ListView(
         padding: EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
-        children: [ // todo get de la API
+        children: [ // todo get toda la info de la API
           ActividadPreview(
               user: userJavi,
               actividad: actTest,

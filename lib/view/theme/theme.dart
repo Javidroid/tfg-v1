@@ -49,7 +49,7 @@ class ThemeGenerator {
         chipRadius: 30.0,
         popupMenuRadius: 10.0,
         popupMenuElevation: 15.0,
-        tabBarIndicatorSchemeColor: SchemeColor.secondary,
+        tabBarIndicatorSchemeColor: SchemeColor.primary,
         navigationBarIndicatorSchemeColor: SchemeColor.primary,
       ),
       keyColors: const FlexKeyColors(
@@ -59,7 +59,7 @@ class ThemeGenerator {
       ),
       tones: FlexTones.highContrast(Brightness.light),
       visualDensity: FlexColorScheme.comfortablePlatformDensity,
-      fontFamily: 'Futura', // todo revisar fuente
+      fontFamily: 'Futura-Bold', // todo revisar fuente
     );
   }
 

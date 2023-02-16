@@ -1,5 +1,7 @@
 import 'package:tfg_v1/model/perfil.dart';
 
+import 'actividad.dart';
+
 /// Esta clase es la que contiene toda la información relativa a un Usuario, que
 /// representará a cada persona que quiera registrarse en la aplicación.
 /// Existe un campo [perfil] que se encarga de almacenar toda la información del usuario que no es relevante
@@ -11,6 +13,7 @@ class Usuario {
   Perfil perfil = Perfil();
   RolUsuario tipo = RolUsuario.alumno;
   bool verificado = false;
+  List<Actividad> actividades = [];
 
   Usuario(this.id, this.correo, this.username);
 

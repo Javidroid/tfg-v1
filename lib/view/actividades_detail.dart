@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tfg_v1/model/actividad.dart';
 
 class ActividadesDetail extends StatefulWidget {
-  const ActividadesDetail({super.key});
+  const ActividadesDetail({super.key, required this.actividad});
+
+  final Actividad actividad;
 
   @override
   State<ActividadesDetail> createState() => _ActividadesDetailState();

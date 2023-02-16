@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tfg_v1/view/actividades_list.dart';
+import 'package:tfg_v1/view/ajustes.dart';
 import 'package:tfg_v1/view/theme/theme.dart';
+import '../model/Usuario.dart';
+import '../model/actividad.dart';
+import 'pantalla_perfil.dart';
 
 class PantallaPrincipal extends StatefulWidget {
   const PantallaPrincipal({super.key});
@@ -23,7 +27,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         children: [
           UserAccountsDrawerHeader(
             currentAccountPicture: GestureDetector(
-              onTap: () => Navigator.pushNamed(context, "/home/perfil"),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PantallaPerfil())
+                );
+              },
               child: const CircleAvatar(
                 foregroundImage: AssetImage("assets/SilenTheKid.jpg"),
               ),
@@ -46,7 +55,10 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             title: const Text('Perfil'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, "/home/perfil");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PantallaPerfil())
+              );
             },
           ),
           ListTile(
@@ -62,7 +74,10 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             title: const Text('Ajustes'),
             onTap: () {
               Navigator.pop(context);
-              Navigator.pushNamed(context, "/home/ajustes");
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const PantallaAjustes())
+              );
             },
           ),
           ListTile(
