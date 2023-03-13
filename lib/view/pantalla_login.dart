@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tfg_v1/view/p_principal_example.dart';
+import 'package:tfg_v1/view/pantalla_principal.dart';
 import 'package:tfg_v1/view/theme/theme.dart';
 import 'pantalla_registro.dart';
 
